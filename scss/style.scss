@@ -1,0 +1,11 @@
+@use 'reset';
+@use 'variables';
+@use 'hero';
+@use 'main';
+@use 'creations';
+@use 'footer';
+@use 'linksHover';
+
+button {
+    cursor: pointer;
+}

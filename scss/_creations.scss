@@ -1,0 +1,166 @@
+@use 'variables';
+
+.creations {
+    width: calc(100% - 3rem);//
+    margin: 0 auto 6rem;//
+    max-width: 30rem;//**
+
+    &__head {
+        text-align: center;
+        margin: 0 0 6rem;
+
+        & > button {
+            display: none;
+        }
+    }
+
+    &__title {
+        font-family: variables.$fontJosefinSans;
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
+
+    &__imgs {
+        display: grid;
+        gap: 3rem;
+        grid-template-areas: 
+        "grid1"
+        "grid2"
+        "grid3"
+        "grid4"
+        "grid5"
+        "grid6"
+        "grid7"
+        "grid8";
+        grid-auto-columns: 1fr;
+    }
+
+    &__grid-img {
+        position: relative;
+        & > span {
+            $postionPadding: 1rem 1rem;//
+            position: absolute !important;
+            left: 0;
+            bottom: 0;
+            padding: $postionPadding;
+            color: variables.$White;
+            font-size: 2rem;
+            font-family: variables.$fontJosefinSans;
+            text-transform: uppercase;
+            line-height: initial;
+            pointer-events: none;
+            z-index: 1;
+            width: 80%;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            min-height: 100%;
+            bottom: 0;
+            background: linear-gradient(0.25turn, #000000, #00000083, #00000000);
+        }
+
+        &:hover::after {
+            opacity: .6;
+            cursor: pointer;
+            background: linear-gradient(0deg, variables.$White, variables.$White);
+        }
+        &:hover > span {
+            color: variables.$Black;
+        }
+        & > img {
+            width: 100%;
+        }
+    }
+
+    &__btn {
+        min-width: 15rem;
+        margin: 3rem auto 0;
+        display: block;
+        padding: 1.75rem !important;
+        font-family: variables.$fontJosefinSans;
+        text-transform: uppercase;
+        font-weight: bolder;
+        line-height: 0;
+        border: 2px solid variables.$VeryDarkGray;
+        text-transform: uppercase;
+        font-family: variables.$fontJosefinSans;
+
+        &:hover {
+            background-color: variables.$Black;
+            color: variables.$White;
+            transition: .25s ease-in-out;
+        }
+    }
+}
+
+@for $i from 1 through 8 {
+    .creations__grid-img--#{$i} {
+        grid-area: grid#{$i};
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .creations {
+        width: calc(100% - 20rem);
+        max-width: unset;
+        margin-bottom: 12rem;
+    }
+    .creations__imgs {
+        grid-template-areas: 
+        "grid1 grid2 grid3 grid4"
+        "grid5 grid6 grid7 grid8";
+    }
+    .creations__grid-img {
+        & > span {
+            $postionTextDesktop: 1rem .5rem;
+            width: 100%;
+            font-size: 1.5rem;
+            left: 0;
+            padding: $postionTextDesktop;
+        }
+        &::after {
+            background: linear-gradient(0deg, #000000, #00000083, #00000000);
+        }
+    }
+
+    .creations__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        line-height: 0;
+        & > button {
+            display: block;
+            padding: 1.2rem 2.5rem;
+            border: 2px solid variables.$VeryDarkGray;
+            text-transform: uppercase;
+            font-family: variables.$fontJosefinSans;
+
+            &:hover {
+                background-color: variables.$Black;
+                color: variables.$White;
+                transition: .25s ease-in-out;
+            }
+        }
+        & > h2 {
+            font-size: 4rem;
+        }
+    }
+
+    .creations__btn {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 1280px){
+    .creations__grid-img {
+        & > span {
+            $postionTextDesktop: 2rem 2rem;
+            width: 100%;
+            font-size: 2rem;
+            left: 0;
+            padding: $postionTextDesktop;
+        }
+    }
+}

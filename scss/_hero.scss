@@ -1,0 +1,193 @@
+@use 'variables';
+
+.hero {
+    position: relative;
+
+    &__title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 3rem); //
+        padding: 2.75rem;
+        border: 4px solid variables.$White;
+        color: variables.$White;
+        font-size: 2.25rem; //
+        font-family: variables.$fontJosefinSans;
+        font-weight: variables.$fwJosefinSans;
+        text-transform: uppercase;
+        max-width: 25rem;
+    }
+
+    &__imgs > img {
+        width: 100%;
+        min-height: 100dvh;
+    }
+
+    &__mobile {
+        max-height: 81.25rem;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 3rem);//
+    margin: 0 auto;
+    position: absolute;
+    margin: 5rem 1.5rem;//
+    z-index: 2;
+
+    &__logo {
+        z-index: 2;
+    }
+
+    &__links {
+        display: none;
+
+        & > li > a {
+        text-decoration: none;
+        position: relative;
+        font-family: variables.$fontJosefinSans;
+        font-weight: variables.$fwJosefinSans;
+        color: variables.$White;
+        text-transform: uppercase;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: calc(0% - .5rem);
+            }
+        &:hover::after {
+            width: 100%;
+            padding: 1px;
+            background-color: variables.$White;
+            clip-path: polygon(25% 0, 75% 0, 75% 100%, 25% 100%);
+            transition: .25s ease-in-out;
+            }
+        }
+
+        &[aria-expanded="true"] {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: fixed;
+            min-height: 100vh;
+            width: 100dvw;
+            transform: translate(calc(0% - 1.5rem), -5rem);
+            background-color: variables.$Black;
+            gap: 1rem;
+            font-size: 3rem;
+            padding: 3rem 1.5rem;
+        }
+    }
+
+    &__burguer-menu {
+        min-height: 100%;
+        min-width: 3rem;
+        position: relative;
+        cursor: pointer;
+        z-index: 10;
+
+        & > span {
+            min-height: 4px;
+            width: 100%;
+            background-color: variables.$White;
+            position: absolute;
+        }
+
+        & > span:nth-child(1)[aria-controls="opened"] {
+            top: calc(50% - 2px);
+            transform: rotate(135deg);
+            transition: .250s ease-in-out;
+        }
+
+
+        & > span:nth-child(2) {
+            top: calc(50% - 2px);
+            &[aria-controls="opened"] {
+                clip-path: circle(0% at 50% 50%);
+                transition: .3s ease-in-out;
+            }
+        }
+
+        & > span:nth-child(3) {
+            top: calc(100% - 4px);
+            &[aria-controls="opened"] {
+                top: calc(50% - 2px);
+                transform: rotate(-135deg);
+                transition: .250s ease-in-out;
+            }
+        }
+
+
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .hero {
+        &__title {
+            width: calc(100% - 6rem);
+            font-size: 4rem;
+            max-width: unset;
+            // text-align: justify;
+        }
+    }
+    .navbar {
+        width: calc(100% - 6rem);
+        margin: 5rem 3rem;
+        &__links {
+            padding-inline: 3rem !important;
+            &[aria-expanded="true"] {
+                transform: translate(calc(0% - 3rem), -5rem);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .hero {
+        &__title {
+            // padding: 3.5rem;
+            // text-align: justify;
+            padding-right: 10rem;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 1024px){
+    .hero__title {
+        position: absolute;
+        width: 50%;
+        top: 60%;
+        left: calc(0% + 3rem);
+        transform: translate(-0%, -50%);
+        line-height: initial;
+        max-width: 42rem;
+        font-size: 2rem;
+        letter-spacing: .75rem;
+    }
+    .navbar {
+        &__links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+
+            & >li > a {
+                text-transform: unset;
+                font-weight: bolder;
+            }
+        }
+        &__burguer-menu {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 1240px) {
+    .hero__title {
+        font-size: 3rem;
+    }
+}
